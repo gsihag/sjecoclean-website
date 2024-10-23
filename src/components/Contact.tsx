@@ -50,7 +50,6 @@ export default function Contact() {
               <div>
                 <h3 className="font-semibold text-gray-800">Phone</h3>
                 <p className="text-gray-600">+61 420 575 011</p>
-                <p className="text-gray-600">24/7</p>
               </div>
             </div>
 
