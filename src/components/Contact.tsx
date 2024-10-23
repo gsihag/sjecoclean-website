@@ -49,8 +49,8 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800">Phone</h3>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
-                <p className="text-gray-600">Mon-Fri 9am-6pm</p>
+                <p className="text-gray-600">+61 420 575 011</p>
+                <p className="text-gray-600">24/7</p>
               </div>
             </div>
 
@@ -60,8 +60,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800">Email</h3>
-                <p className="text-gray-600">info@sjeclean.com</p>
-                <p className="text-gray-600">support@sjeclean.com</p>
+                <p className="text-gray-600">contact@sjeclean.com.au</p>
               </div>
             </div>
 
@@ -71,8 +70,8 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800">Address</h3>
-                <p className="text-gray-600">123 Green Street</p>
-                <p className="text-gray-600">New York, NY 10001</p>
+                <p className="text-gray-600">1 Renou Rd</p>
+                <p className="text-gray-600">Wantirna, South VIC 3152</p>
               </div>
             </div>
           </div>
