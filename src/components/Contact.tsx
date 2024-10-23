@@ -69,8 +69,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-gray-800">Address</h3>
-                <p className="text-gray-600">1 Renou Rd</p>
-                <p className="text-gray-600">Wantirna, South VIC 3152</p>
+                <p className="text-gray-600">Covering All Melbourne Suburbs</p>
               </div>
             </div>
           </div>
