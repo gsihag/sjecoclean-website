@@ -1,6 +1,10 @@
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import QuoteModal from './QuoteModal';
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div id="home" className="pt-16 bg-gradient-to-br from-green-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -14,13 +18,19 @@ export default function Hero() {
               We care for your space and our planet.
             </p>
             <div className="mt-8 flex space-x-4">
-              <button className="bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition flex items-center">
-                Get Started
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition flex items-center"
+              >
+                Get Quote
                 <ArrowRight className="ml-2 h-5 w-5" />
               </button>
-              <button className="border-2 border-green-600 text-green-600 px-8 py-3 rounded-full hover:bg-green-50 transition">
+              <a 
+                href="#about"
+                className="border-2 border-green-600 text-green-600 px-8 py-3 rounded-full hover:bg-green-50 transition"
+              >
                 Learn More
-              </button>
+              </a>
             </div>
           </div>
           <div className="relative">
@@ -45,6 +55,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
