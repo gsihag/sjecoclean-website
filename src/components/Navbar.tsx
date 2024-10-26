@@ -9,6 +9,7 @@ export default function Navbar() {
 
   const handleNavClick = () => {
     setIsMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

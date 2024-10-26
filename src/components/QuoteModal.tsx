@@ -15,7 +15,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       name: formData.get('name'),
       email: formData.get('email'),
       phone: formData.get('phone'),
-      message: formData.get('message')
+      message: formData.get('message'),
     };
 
     // Here you would typically send this data to your server
@@ -31,7 +31,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
       onClick={handleBackgroundClick}
     >
@@ -42,9 +42,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         >
           <X className="h-5 w-5" />
         </button>
-        
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Get a Free Quote</h2>
-        
+
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          Get a Free Quote
+        </h2>
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700 mb-2">Name</label>
@@ -56,7 +58,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               placeholder="Your name"
             />
           </div>
-          
+
           <div>
             <label className="block text-gray-700 mb-2">Email</label>
             <input
@@ -67,7 +69,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               placeholder="your@email.com"
             />
           </div>
-          
+
           <div>
             <label className="block text-gray-700 mb-2">Phone</label>
             <input
@@ -78,9 +80,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               placeholder="Your phone number"
             />
           </div>
-          
+
           <div>
-            <label className="block text-gray-700 mb-2">How can we help you?</label>
+            <label className="block text-gray-700 mb-2">
+              How can we help you?
+            </label>
             <textarea
               name="message"
               rows={4}
@@ -89,7 +93,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               placeholder="Tell us about your cleaning needs"
             ></textarea>
           </div>
-          
+
           <button
             type="submit"
             className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
