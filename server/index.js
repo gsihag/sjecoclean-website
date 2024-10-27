@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Nodemailer transport configuration
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: parseInt(process.env.SMTP_PORT),
@@ -22,6 +23,12 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Welcome to the SJ EcoClean API!'); // Simple welcome message
+});
+
+// Email sending route
 app.post('/api/send-email', async (req, res) => {
   const { name, email, phone, message } = req.body;
 
@@ -53,6 +60,7 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
+// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
