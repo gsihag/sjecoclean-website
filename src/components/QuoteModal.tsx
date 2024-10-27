@@ -1,4 +1,6 @@
 import { X } from 'lucide-react';
+import { useState } from 'react';
+import axios from 'axios';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -6,10 +8,16 @@ interface QuoteModalProps {
 }
 
 export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get('name'),
@@ -18,10 +26,19 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       message: formData.get('message'),
     };
 
-    // Here you would typically send this data to your server
-    // For now, we'll use mailto as a fallback
-    window.location.href = `mailto:contact@sjecoclean.com.au?subject=Quote Request&body=Name: ${data.name}%0D%0AEmail: ${data.email}%0D%0APhone: ${data.phone}%0D%0AMessage: ${data.message}`;
-    onClose();
+    try {
+      await axios.post('http://localhost:3000/api/send-email', data);
+      setSubmitStatus('success');
+      setTimeout(() => {
+        onClose();
+        setSubmitStatus('idle');
+      }, 2000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBackgroundClick = (e: React.MouseEvent) => {
@@ -96,10 +113,22 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+            disabled={isSubmitting}
+            className={`w-full px-6 py-3 rounded-lg transition ${
+              isSubmitting 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-green-600 hover:bg-green-700'
+            } text-white`}
           >
-            Send
+            {isSubmitting ? 'Sending...' : 'Send'}
           </button>
+
+          {submitStatus === 'success' && (
+            <p className="text-green-600 text-center">Message sent successfully!</p>
+          )}
+          {submitStatus === 'error' && (
+            <p className="text-red-600 text-center">Failed to send message. Please try again.</p>
+          )}
         </form>
       </div>
     </div>
